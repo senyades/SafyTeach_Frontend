@@ -10,6 +10,7 @@ import Leaderboard from './components/Leaderboard';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import AdminPanel from './components/Admin';
+import AchievementsList from './components/AchievementsList';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/quiz4" element={<Quiz4 />} />
         <Route path="/quiz5" element={<Quiz5 />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/achievements" element={<AchievementsList />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route 
     path="/admin" 

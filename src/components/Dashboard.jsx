@@ -9,7 +9,8 @@ import {
   Grid,
   Card,
   CardContent,
-  CircularProgress
+  CircularProgress, 
+  Avatar
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import LockIcon from '@mui/icons-material/Lock';
@@ -19,11 +20,11 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 const quizzes = [
-  { id: 1, title: 'Знакомство с интернетом и его возможностями', description: 'Базовый модуль рассказывает про интернет' },
-  { id: 2, title: 'Личная информация и ее защита', description: 'Модуль рассказывает про принципы защиты личной информации' },
-  { id: 3, title: 'Опасности в интернете и как их избежать.', description: 'Модуль про безопастность в интернете' },
-  { id: 4, title: 'Безопасное общение в интернете.', description: 'Модуль про то, как общаться в интернете' },
-  { id: 5, title: 'Ответственное использование гаджетов и подведение итогов', description: 'Завершающий модуль' }
+  { id: 1, title: 'Знакомство с интернетом и его возможностями', description: 'Базовый модуль рассказывает про интернет', img:'/img/internet.png' },
+  { id: 2, title: 'Личная информация и ее защита', description: 'Модуль рассказывает про принципы защиты личной информации', img:'/img/personal-solid-icon.png' },
+  { id: 3, title: 'Опасности в интернете и как их избежать', description: 'Модуль про безопастность в интернете',  img:'/img/fire.png'},
+  { id: 4, title: 'Безопасное общение в интернете', description: 'Модуль про то, как общаться в интернете',  img:'/img/chat-icon-logo.png' },
+  { id: 5, title: 'Ответственное использование гаджетов и подведение итогов', description: 'Завершающий модуль', img:'/img/phone-icon.png' }
 ];
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -195,9 +196,15 @@ const Dashboard = () => {
       {/* Основной контент */}
       <Box sx={{ flexGrow: 1, p: 3 }}>
         <StyledContainer maxWidth="lg" sx={{ p: 0 }}>
-          <Box sx={{ mb: 4 }}>
+          <Box sx={{ mb: 4, display:'flex', gap:'4px' }}>
             <Typography variant="h4" component="h1">
-              Добро пожаловать, {login}!
+              Добро пожаловать,
+            </Typography>
+             <Avatar sx={{ mr: 2, bgcolor: '#1976d2' }}>
+                    {login[0].toUpperCase()}
+                  </Avatar>
+              <Typography variant="h4" component="h1">
+             {login}!
             </Typography>
           </Box>
   
@@ -206,9 +213,10 @@ const Dashboard = () => {
             p: 2,
             border: `2px solid #f9f8f8`,
             borderRadius: '16px',
-            boxShadow: 'none'
+            boxShadow: '1px 4px 69px 9px rgba(255, 220, 0, 0.11)'
           }}>
-            <CardContent>
+            <CardContent sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap:'16px'}}>
+               <img src="/img/one-coin.png" alt="coin" style={{ width: '50px', height: '50px' }} />
               <Typography variant="h5" component="div">
                 Ваш текущий счет: {score}
               </Typography>
@@ -301,6 +309,7 @@ const Dashboard = () => {
                       height: '90%',
                       gap: 2
                     }}>
+                       <img src={quiz.img} alt="coin" style={{ width: '50px', height: '50px' }} />
                       <Typography variant="h6" gutterBottom>
                         {quiz.title}
                       </Typography>

@@ -12,6 +12,7 @@ import {
   Alert
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
@@ -65,9 +66,14 @@ const Login = () => {
   };
 
   return (
-    <StyledContainer maxWidth={false}>
-      <StyledBox>
-        <Typography component="h1" variant="h5" align="center" gutterBottom>
+    
+    <StyledContainer maxWidth={false} sx={{ display:'flex', background: ' linear-gradient(180deg,rgba(255, 255, 255, 1) 75%, rgba(83, 129, 237, 1) 100%)' }}> 
+        <Typography component="h1" variant="h5" align="center" sx={{fontWeight: 'bold', padding: '24px'}} gutterBottom>
+          SafyTeach
+        </Typography>
+      <StyledBox sx={{height:'100%', display:'flex', flexDirection:'column',justifyContent:'center', alignItems:''}}>
+      
+        <Typography component="h1" variant="h5" align="center" sx={{fontWeight: 'bold'}} gutterBottom>
           Вход в систему
         </Typography>
 
@@ -104,7 +110,12 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, boxShadow: 'none',
+
+              '&:hover': {
+                        boxShadow: 'none',
+                      },
+            }}
           >
             Войти
           </Button>
