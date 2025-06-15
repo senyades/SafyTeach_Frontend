@@ -1,4 +1,3 @@
-// src/components/Login.jsx
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,25 +8,28 @@ import {
   TextField,
   Button,
   Link,
-  Alert
+  Alert,
+  Paper
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 
-const StyledContainer = styled(Container)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
+const Background = styled('div')({
   width: '100%',
   height: '100vh',
-  margin: 0,
-}));
+  background: 'linear-gradient(135deg, #ffe5b4, #ffb199)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const GlassCard = styled(Paper)(({ theme }) => ({
+  backdropFilter: 'blur(10px)',
+  background: 'rgba(255, 255, 255, 0.8)',
+  borderRadius: '20px',
   padding: theme.spacing(4),
-  borderRadius: theme.shape.borderRadius,
-  maxWidth: '400px'
+  boxShadow: '0 8px 30px rgba(0,0,0,0.1)',
+  maxWidth: 400,
+  width: '90%',
 }));
 
 const Login = () => {
@@ -49,7 +51,7 @@ const Login = () => {
       localStorage.setItem('admin', response.data.admin);
       localStorage.setItem('completed_quizzes', response.data.completed_quizzes);
 
-      if (response.data.admin==true) {
+      if (response.data.admin === true) {
         navigate('/admin');
       } else {
         navigate('/dashboard', {
@@ -58,7 +60,6 @@ const Login = () => {
           }
         });
       }
-
     } catch (err) {
       setError(err.response?.data?.error || 'Ошибка авторизации');
       localStorage.removeItem('admin');
@@ -66,14 +67,13 @@ const Login = () => {
   };
 
   return (
-    
-    <StyledContainer maxWidth={false} sx={{ display:'flex', background: ' linear-gradient(180deg,rgba(255, 255, 255, 1) 75%, rgba(83, 129, 237, 1) 100%)' }}> 
-        <Typography component="h1" variant="h5" align="center" sx={{fontWeight: 'bold', padding: '24px'}} gutterBottom>
+    <Background>
+      <GlassCard elevation={3}>
+        <Typography variant="h4" align="center" fontWeight={600} gutterBottom>
           SafyTeach
         </Typography>
-      <StyledBox sx={{height:'100%', display:'flex', flexDirection:'column',justifyContent:'center', alignItems:''}}>
-      
-        <Typography component="h1" variant="h5" align="center" sx={{fontWeight: 'bold'}} gutterBottom>
+
+        <Typography variant="subtitle1" align="center" color="text.secondary" gutterBottom>
           Вход в систему
         </Typography>
 
@@ -86,8 +86,8 @@ const Login = () => {
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"
-            required
             fullWidth
+            required
             label="Логин"
             autoComplete="username"
             autoFocus
@@ -97,8 +97,8 @@ const Login = () => {
 
           <TextField
             margin="normal"
-            required
             fullWidth
+            required
             label="Пароль"
             type="password"
             autoComplete="current-password"
@@ -110,11 +110,16 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, boxShadow: 'none',
-
+            sx={{
+              mt: 3,
+              mb: 2,
+              py: 1.2,
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, #f78ca0, #f9748f)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
               '&:hover': {
-                        boxShadow: 'none',
-                      },
+                background: 'linear-gradient(135deg, #f5576c, #f093fb)',
+              },
             }}
           >
             Войти
@@ -124,16 +129,16 @@ const Login = () => {
             Нет аккаунта?{' '}
             <Link
               component="button"
-              type="button"
               variant="body2"
               onClick={() => navigate('/register')}
+              underline="hover"
             >
               Зарегистрироваться
             </Link>
           </Typography>
         </Box>
-      </StyledBox>
-    </StyledContainer>
+      </GlassCard>
+    </Background>
   );
 };
 

@@ -47,11 +47,14 @@ const AchievementsList = () => {
         setCompletedQuizzes(completed_quizzes || []);
 
         const leaderboardRes = await axios.get(`${process.env.REACT_APP_API_URL}/user/leaderboard`);
-        const leaderboard = leaderboardRes.data;
+        const leaderboard = leaderboardRes.data.leaderboard;
 
+        
         if (leaderboard.length > 0 && leaderboard[0].login === savedLogin) {
           setIsFirstInLeaderboard(true);
+          console.log('круто',isFirstInLeaderboard)
         }
+        
 
         setLoading(false);
       } catch (error) {
